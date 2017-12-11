@@ -29,11 +29,31 @@ namespace FaqBuilder.Controllers
 
             var result = _gameBll.CreateGame(viewModel);
 
-            if (result.Success) RedirectToAction("Index");
+            if (result.Success)
+            {
+                return RedirectToAction("Index");
+            }
 
             ModelState.AddModelError(string.Empty, result.Error);
 
             return View(result);
+        }
+
+        public ActionResult GameDetails(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            var result = _gameBll.GetGameVmById(id.Value);
+
+            if (result.Success)
+            {
+                return View(result);
+            }
+
+            return HttpNotFound();
         }
     }
 }

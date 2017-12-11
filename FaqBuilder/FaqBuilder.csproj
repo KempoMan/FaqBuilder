@@ -414,6 +414,7 @@
     <Content Include="Views\Game\CreateGame.cshtml" />
     <Content Include="Views\Faq\Index.cshtml" />
     <Content Include="Views\Faq\CreateFaq.cshtml" />
+    <Content Include="Views\Game\GameDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

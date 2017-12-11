@@ -57,5 +57,14 @@ namespace FaqBuilder.Bll
 
             return viewModel;
         }
+
+        public GameViewModel GetGameVmById(int id)
+        {
+            var entity = _unitOfWork.Games.Get(id);
+            var vm = GetNewGameVm();
+            Mapper.Map(entity, vm);
+
+            return vm;
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace FaqBuilder.Models
 
         public int PlatformId { get; set; }
 
-        public Platform Platform { get; set; }
+        public virtual Platform Platform { get; set; }
 
         //public int FaqId { get; set; }
 
