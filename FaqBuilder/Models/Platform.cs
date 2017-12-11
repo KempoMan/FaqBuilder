@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FaqBuilder.Models
 {
@@ -11,5 +12,7 @@ namespace FaqBuilder.Models
         public string ShortName { get; set; }
 
         public string Description { get; set; }
+
+        public ICollection<Game> Games { get; set; }
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace FaqBuilder.Models
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace FaqBuilder.Models
 {
     public class Game
     {
@@ -14,13 +17,13 @@
 
         public Platform Platform { get; set; }
 
-        public int FaqId { get; set; }
+        //public int FaqId { get; set; }
 
-        public Faq Faq { get; set; }
+        //public Faq Faq { get; set; }
 
         //public IEnumerable<MoveType> MoveTypes { get; set; }
 
-        //public IEnumerable<Character> Characters { get; set; }
+        public ICollection<Character> Characters { get; set; }
 
 
     }

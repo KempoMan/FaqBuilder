@@ -12,9 +12,13 @@ namespace FaqBuilder.EntityConfigurations
             Property(t => t.Description)
                 .HasMaxLength(2000);
 
-            HasRequired(t => t.Game)
-                .WithOptional(t => t.Faq)
-                .WillCascadeOnDelete(false);
+            //HasRequired(t => t.Game)
+            //    .WithOptional(t => t.Faq)
+            //    .WillCascadeOnDelete(false);
+
+            //HasRequired(t => t.Game)
+            //    .WithOptional()
+            //    .WillCascadeOnDelete(false);
         }
     }
 }

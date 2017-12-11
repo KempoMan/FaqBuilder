@@ -265,6 +265,34 @@
     <Compile Include="Migrations\201712110339307_ChangedFaqAndGameFluentMap.Designer.cs">
       <DependentUpon>201712110339307_ChangedFaqAndGameFluentMap.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712110441280_AddNavigationPropertyToPlatform.cs" />
+    <Compile Include="Migrations\201712110441280_AddNavigationPropertyToPlatform.Designer.cs">
+      <DependentUpon>201712110441280_AddNavigationPropertyToPlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712110451563_DropGamesAndPlatforms.cs" />
+    <Compile Include="Migrations\201712110451563_DropGamesAndPlatforms.Designer.cs">
+      <DependentUpon>201712110451563_DropGamesAndPlatforms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712110452429_AddGamesAndPlatforms.cs" />
+    <Compile Include="Migrations\201712110452429_AddGamesAndPlatforms.Designer.cs">
+      <DependentUpon>201712110452429_AddGamesAndPlatforms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712110459438_RemoveRequiredGameFromFaq.cs" />
+    <Compile Include="Migrations\201712110459438_RemoveRequiredGameFromFaq.Designer.cs">
+      <DependentUpon>201712110459438_RemoveRequiredGameFromFaq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712110502021_RemoveNavigationPropertiesFromFaq.cs" />
+    <Compile Include="Migrations\201712110502021_RemoveNavigationPropertiesFromFaq.Designer.cs">
+      <DependentUpon>201712110502021_RemoveNavigationPropertiesFromFaq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712110520244_RemoveAllDbSetsFromContext.cs" />
+    <Compile Include="Migrations\201712110520244_RemoveAllDbSetsFromContext.Designer.cs">
+      <DependentUpon>201712110520244_RemoveAllDbSetsFromContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712110521344_AddGamePlatformCharacter.cs" />
+    <Compile Include="Migrations\201712110521344_AddGamePlatformCharacter.Designer.cs">
+      <DependentUpon>201712110521344_AddGamePlatformCharacter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Character.cs" />
@@ -422,6 +450,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712110339307_ChangedFaqAndGameFluentMap.resx">
       <DependentUpon>201712110339307_ChangedFaqAndGameFluentMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712110441280_AddNavigationPropertyToPlatform.resx">
+      <DependentUpon>201712110441280_AddNavigationPropertyToPlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712110451563_DropGamesAndPlatforms.resx">
+      <DependentUpon>201712110451563_DropGamesAndPlatforms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712110452429_AddGamesAndPlatforms.resx">
+      <DependentUpon>201712110452429_AddGamesAndPlatforms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712110459438_RemoveRequiredGameFromFaq.resx">
+      <DependentUpon>201712110459438_RemoveRequiredGameFromFaq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712110502021_RemoveNavigationPropertiesFromFaq.resx">
+      <DependentUpon>201712110502021_RemoveNavigationPropertiesFromFaq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712110520244_RemoveAllDbSetsFromContext.resx">
+      <DependentUpon>201712110520244_RemoveAllDbSetsFromContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712110521344_AddGamePlatformCharacter.resx">
+      <DependentUpon>201712110521344_AddGamePlatformCharacter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

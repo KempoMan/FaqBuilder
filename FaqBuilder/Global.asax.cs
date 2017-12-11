@@ -22,7 +22,8 @@ namespace FaqBuilder
 
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Platform, PlatformViewModel>().ReverseMap();
+                cfg.CreateMap<Platform, PlatformViewModel>()
+                .ForMember(t => t.Id, opt => opt.Ignore()).ReverseMap();
                 cfg.CreateMap<Game, GameViewModel>().ReverseMap();
             });
         }

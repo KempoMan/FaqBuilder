@@ -20,7 +20,7 @@ namespace FaqBuilder.EntityConfigurations
                 .HasMaxLength(255);
 
             HasRequired(t => t.Game)
-                .WithOptional()
+                .WithMany(t => t.Characters)
                 .WillCascadeOnDelete(false);
         }
     }

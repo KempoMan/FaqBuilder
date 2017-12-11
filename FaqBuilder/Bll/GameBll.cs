@@ -31,7 +31,29 @@ namespace FaqBuilder.Bll
         public GameViewModel GetListsForViewModel(GameViewModel viewModel)
         {
             viewModel.Platforms = _unitOfWork.Platforms.GetAll();
-            viewModel.Games = _unitOfWork.Games.GetAll();
+            //viewModel.Games = _unitOfWork.Games.GetAll();
+
+            return viewModel;
+        }
+
+        public GameViewModel CreateGame(GameViewModel viewModel)
+        {
+            var existing = _unitOfWork.Games
+                .Find(t => t.Name == viewModel.Name || t.ShortName == viewModel.ShortName)
+                .FirstOrDefault();
+
+            if (existing != null)
+            {
+                viewModel.Success = false;
+                viewModel.Error = $"There is already a game named {viewModel.Name} ({viewModel.ShortName}).";
+            }
+            else
+            {
+                var newGame = new Game();
+                Mapper.Map(viewModel, newGame);
+                _unitOfWork.Games.Add(newGame);
+                _unitOfWork.Complete();
+            }
 
             return viewModel;
         }

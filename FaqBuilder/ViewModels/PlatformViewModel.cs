@@ -9,6 +9,7 @@ namespace FaqBuilder.ViewModels
 
         [Required]
         [StringLength(255)]
+        [Display(Name="Platform Name")]
         public string Name { get; set; }
 
         [StringLength(10)]
