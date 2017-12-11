@@ -51,6 +51,9 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -121,6 +124,7 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -195,25 +199,89 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Bll\FaqBll.cs" />
+    <Compile Include="Bll\GameBll.cs" />
+    <Compile Include="Bll\PlatformBll.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FaqController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlatformController.cs" />
+    <Compile Include="Dal\FaqRepository.cs" />
+    <Compile Include="Dal\GameRepository.cs" />
+    <Compile Include="Dal\PlatformRepository.cs" />
+    <Compile Include="Dal\Repository.cs" />
+    <Compile Include="Dal\UnitOfWork.cs" />
     <Compile Include="DbContext\FaqBuilderDbContext.cs" />
     <Compile Include="EntityConfigurations\ControllerInputConfiguration.cs" />
+    <Compile Include="EntityConfigurations\CharacterConfiguration.cs" />
+    <Compile Include="EntityConfigurations\FaqConfiguration.cs" />
+    <Compile Include="EntityConfigurations\GameConfiguration.cs" />
+    <Compile Include="EntityConfigurations\PlatformConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FaqBuilderViewModel.cs" />
+    <Compile Include="Interfaces\IFaqBuilderViewModel.cs" />
+    <Compile Include="Interfaces\IFaqRepository.cs" />
+    <Compile Include="Interfaces\IGameRepository.cs" />
+    <Compile Include="Interfaces\IPlatformRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\201712100326406_CreateControllerInputTable.cs" />
     <Compile Include="Migrations\201712100326406_CreateControllerInputTable.Designer.cs">
       <DependentUpon>201712100326406_CreateControllerInputTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712100406538_CreatePlatformTable.cs" />
+    <Compile Include="Migrations\201712100406538_CreatePlatformTable.Designer.cs">
+      <DependentUpon>201712100406538_CreatePlatformTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712100411013_AddDescFields.cs" />
+    <Compile Include="Migrations\201712100411013_AddDescFields.Designer.cs">
+      <DependentUpon>201712100411013_AddDescFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712100538274_AddControllerInputId.cs" />
+    <Compile Include="Migrations\201712100538274_AddControllerInputId.Designer.cs">
+      <DependentUpon>201712100538274_AddControllerInputId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712102112046_RemovedControllerInputIdFromPlatform.cs" />
+    <Compile Include="Migrations\201712102112046_RemovedControllerInputIdFromPlatform.Designer.cs">
+      <DependentUpon>201712102112046_RemovedControllerInputIdFromPlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712102154011_AddShortNameToPlatform.cs" />
+    <Compile Include="Migrations\201712102154011_AddShortNameToPlatform.Designer.cs">
+      <DependentUpon>201712102154011_AddShortNameToPlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712102335279_GameAndCharacterConfig.cs" />
+    <Compile Include="Migrations\201712102335279_GameAndCharacterConfig.Designer.cs">
+      <DependentUpon>201712102335279_GameAndCharacterConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712110138343_AddFaqToModel.cs" />
+    <Compile Include="Migrations\201712110138343_AddFaqToModel.Designer.cs">
+      <DependentUpon>201712110138343_AddFaqToModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712110339307_ChangedFaqAndGameFluentMap.cs" />
+    <Compile Include="Migrations\201712110339307_ChangedFaqAndGameFluentMap.Designer.cs">
+      <DependentUpon>201712110339307_ChangedFaqAndGameFluentMap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Character.cs" />
     <Compile Include="Models\ControllerInput.cs" />
+    <Compile Include="Models\Faq.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Move.cs" />
+    <Compile Include="Models\MoveType.cs" />
+    <Compile Include="Models\Platform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ControllerInputViewModel.cs" />
+    <Compile Include="ViewModels\FaqViewModel.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\PlatformViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -311,10 +379,16 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\Navbar.cshtml" />
+    <Content Include="Views\Platform\Index.cshtml" />
+    <Content Include="Views\Platform\CreatePlatform.cshtml" />
+    <Content Include="Views\Platform\EditPlatform.cshtml" />
+    <Content Include="Views\Game\Index.cshtml" />
+    <Content Include="Views\Game\CreateGame.cshtml" />
+    <Content Include="Views\Faq\Index.cshtml" />
+    <Content Include="Views\Faq\CreateFaq.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -324,6 +398,30 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201712100326406_CreateControllerInputTable.resx">
       <DependentUpon>201712100326406_CreateControllerInputTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712100406538_CreatePlatformTable.resx">
+      <DependentUpon>201712100406538_CreatePlatformTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712100411013_AddDescFields.resx">
+      <DependentUpon>201712100411013_AddDescFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712100538274_AddControllerInputId.resx">
+      <DependentUpon>201712100538274_AddControllerInputId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712102112046_RemovedControllerInputIdFromPlatform.resx">
+      <DependentUpon>201712102112046_RemovedControllerInputIdFromPlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712102154011_AddShortNameToPlatform.resx">
+      <DependentUpon>201712102154011_AddShortNameToPlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712102335279_GameAndCharacterConfig.resx">
+      <DependentUpon>201712102335279_GameAndCharacterConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712110138343_AddFaqToModel.resx">
+      <DependentUpon>201712110138343_AddFaqToModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712110339307_ChangedFaqAndGameFluentMap.resx">
+      <DependentUpon>201712110339307_ChangedFaqAndGameFluentMap.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,15 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration;
+using System.Linq;
+using System.Web;
 using FaqBuilder.Models;
 
 namespace FaqBuilder.EntityConfigurations
 {
-    public class ControllerInputConfiguration : EntityTypeConfiguration<ControllerInput>
+    public class CharacterConfiguration : EntityTypeConfiguration<Character>
     {
-        public ControllerInputConfiguration()
+        public CharacterConfiguration()
         {
             HasKey(t => t.Id);
 
@@ -15,7 +19,7 @@ namespace FaqBuilder.EntityConfigurations
             Property(t => t.Name)
                 .HasMaxLength(255);
 
-            HasRequired(t => t.Platform)
+            HasRequired(t => t.Game)
                 .WithOptional()
                 .WillCascadeOnDelete(false);
         }

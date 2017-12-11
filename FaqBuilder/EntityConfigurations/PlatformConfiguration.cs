@@ -3,9 +3,9 @@ using FaqBuilder.Models;
 
 namespace FaqBuilder.EntityConfigurations
 {
-    public class ControllerInputConfiguration : EntityTypeConfiguration<ControllerInput>
+    public class PlatformConfiguration : EntityTypeConfiguration<Platform>
     {
-        public ControllerInputConfiguration()
+        public PlatformConfiguration()
         {
             HasKey(t => t.Id);
 
@@ -15,9 +15,8 @@ namespace FaqBuilder.EntityConfigurations
             Property(t => t.Name)
                 .HasMaxLength(255);
 
-            HasRequired(t => t.Platform)
-                .WithOptional()
-                .WillCascadeOnDelete(false);
+            Property(t => t.ShortName)
+                .HasMaxLength(10);
         }
     }
 }

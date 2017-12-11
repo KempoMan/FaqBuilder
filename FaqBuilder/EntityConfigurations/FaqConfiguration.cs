@@ -3,20 +3,17 @@ using FaqBuilder.Models;
 
 namespace FaqBuilder.EntityConfigurations
 {
-    public class ControllerInputConfiguration : EntityTypeConfiguration<ControllerInput>
+    public class FaqConfiguration: EntityTypeConfiguration<Faq>
     {
-        public ControllerInputConfiguration()
+        public FaqConfiguration()
         {
             HasKey(t => t.Id);
 
             Property(t => t.Description)
                 .HasMaxLength(2000);
 
-            Property(t => t.Name)
-                .HasMaxLength(255);
-
-            HasRequired(t => t.Platform)
-                .WithOptional()
+            HasRequired(t => t.Game)
+                .WithOptional(t => t.Faq)
                 .WillCascadeOnDelete(false);
         }
     }

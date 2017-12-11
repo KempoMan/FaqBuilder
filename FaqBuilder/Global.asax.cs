@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AutoMapper;
+using FaqBuilder.Models;
+using FaqBuilder.ViewModels;
 
 namespace FaqBuilder
 {
@@ -16,6 +19,12 @@ namespace FaqBuilder
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Platform, PlatformViewModel>().ReverseMap();
+                cfg.CreateMap<Game, GameViewModel>().ReverseMap();
+            });
         }
     }
 }
