@@ -13,11 +13,13 @@ namespace FaqBuilder.Dal
             Platforms = new PlatformRepository(_context);
             Games = new GameRepository(_context);
             Faqs = new FaqRepository(_context);
+            Characters = new CharacterRepository(_context);
         }
 
         public IPlatformRepository Platforms { get; set; }
         public IGameRepository Games { get; set; }
         public IFaqRepository Faqs { get; set; }
+        public ICharacterRepository Characters { get; set; }
 
         public void Dispose()
         {

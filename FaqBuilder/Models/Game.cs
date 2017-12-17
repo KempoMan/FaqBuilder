@@ -23,7 +23,7 @@ namespace FaqBuilder.Models
 
         //public IEnumerable<MoveType> MoveTypes { get; set; }
 
-        public ICollection<Character> Characters { get; set; }
+        public virtual ICollection<Character> Characters { get; set; }
 
 
     }

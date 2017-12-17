@@ -30,6 +30,6 @@ namespace FaqBuilder.ViewModels
 
         public IEnumerable<Platform> Platforms { get; set; } = new List<Platform>();
 
-        //public IEnumerable<Game> Games { get; set; } = new List<Game>();
+        public ICollection<Character> Characters { get; set; }
     }
 }

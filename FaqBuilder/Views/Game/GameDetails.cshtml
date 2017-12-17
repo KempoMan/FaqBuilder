@@ -4,6 +4,10 @@
     ViewBag.Title = "Game Details";
 }
 
+@section styles{
+    <link rel="stylesheet" type="text/css" href="~/Content/DataTables/css/jquery.dataTables.css">
+}
+
 <h2>@Model.Name</h2>
 
 <div>
@@ -28,7 +32,48 @@
 
     </dl>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <input class="btn btn-default" type="button" value="Add Character" onclick="location.href='@Url.Action("Create", "Character", new { id = Model.Id })'" />
+    </div>
+</div>
+<div class="row">
+    &nbsp;
+</div>
+<div>
+    <table class="table table-striped" id="charactersTable">
+        <thead>
+        <tr>
+            <th>Character Name</th>
+            <th>Character Description</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var character in Model.Characters.OrderBy(t => t.Name))
+            {
+                <tr>
+                    <td>@character.Name</td>
+                    <td>@character.Description</td>
+                    <td>
+                        <input class="btn btn-default btn-sm" type="button" value="Details" onclick="location.href='@Url.Action("CharacterDetails", "Character", new { id = character.Id })'" />
+                        <input class="btn btn-default btn-sm" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Character", new { id = character.Id })'" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section scripts{
+    <script type="text/javascript" charset="utf8" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#charactersTable').DataTable();
+        } );
+    </script>
+}

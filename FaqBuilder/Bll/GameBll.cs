@@ -4,6 +4,7 @@ using System.Linq;
 using AutoMapper;
 using FaqBuilder.Dal;
 using FaqBuilder.DbContext;
+using FaqBuilder.Helpers;
 using FaqBuilder.Models;
 using FaqBuilder.ViewModels;
 
@@ -31,28 +32,32 @@ namespace FaqBuilder.Bll
         public GameViewModel GetListsForViewModel(GameViewModel viewModel)
         {
             viewModel.Platforms = _unitOfWork.Platforms.GetAll();
-            //viewModel.Games = _unitOfWork.Games.GetAll();
 
             return viewModel;
         }
 
         public GameViewModel CreateGame(GameViewModel viewModel)
         {
-            var existing = _unitOfWork.Games
-                .Find(t => t.Name == viewModel.Name || t.ShortName == viewModel.ShortName)
-                .FirstOrDefault();
+            try
+            {
+                var existing = _unitOfWork.Games
+                    .Find(t => t.Name == viewModel.Name || t.ShortName == viewModel.ShortName)
+                    .FirstOrDefault();
 
-            if (existing != null)
-            {
-                viewModel.Success = false;
-                viewModel.Error = $"There is already a game named {viewModel.Name} ({viewModel.ShortName}).";
+                if (existing != null)
+                {
+                    viewModel.Success = false;
+                    viewModel.Error = $"There is already a game named {viewModel.Name} ({viewModel.ShortName}).";
+                }
+                else
+                {
+                    _unitOfWork.Games.Add(Mapper.Map(viewModel, new Game()));
+                    _unitOfWork.Complete();
+                }
             }
-            else
+            catch (Exception e)
             {
-                var newGame = new Game();
-                Mapper.Map(viewModel, newGame);
-                _unitOfWork.Games.Add(newGame);
-                _unitOfWork.Complete();
+                ErrorHelper.SetError(viewModel, e);
             }
 
             return viewModel;
@@ -61,10 +66,23 @@ namespace FaqBuilder.Bll
         public GameViewModel GetGameVmById(int id)
         {
             var entity = _unitOfWork.Games.Get(id);
-            var vm = GetNewGameVm();
-            Mapper.Map(entity, vm);
 
-            return vm;
+            return Mapper.Map(entity, GetNewGameVm());
+        }
+
+        public GameViewModel UpdateGame(GameViewModel viewModel)
+        {
+            try
+            {
+                Mapper.Map(viewModel, _unitOfWork.Games.Get(viewModel.Id));
+                _unitOfWork.Complete();
+            }
+            catch (Exception e)
+            {
+                ErrorHelper.SetError(viewModel, e);
+            }
+
+            return viewModel;
         }
     }
 }
