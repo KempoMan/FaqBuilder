@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace FaqBuilder.Models
 {
@@ -17,13 +16,9 @@ namespace FaqBuilder.Models
 
         public virtual Platform Platform { get; set; }
 
-        //public int FaqId { get; set; }
+        public virtual ICollection<MoveType> MoveTypes { get; set; } = new List<MoveType>();
 
-        //public Faq Faq { get; set; }
-
-        //public IEnumerable<MoveType> MoveTypes { get; set; }
-
-        public virtual ICollection<Character> Characters { get; set; }
+        public virtual ICollection<Character> Characters { get; set; } = new List<Character>();
 
 
     }

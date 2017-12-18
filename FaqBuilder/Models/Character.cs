@@ -1,4 +1,6 @@
-﻿namespace FaqBuilder.Models
+﻿using System.Collections.Generic;
+
+namespace FaqBuilder.Models
 {
     public class Character
     {
@@ -8,7 +10,7 @@
 
         public string Description { get; set; }
 
-        //public IEnumerable<Move> Moves { get; set; }
+        // public virtual IEnumerable<Move> Moves { get; set; }
 
         public int GameId { get; set; }
 

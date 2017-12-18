@@ -27,10 +27,7 @@ namespace FaqBuilder.Controllers
 
             var result = _characterBll.CreateCharacter(viewModel);
 
-            if (result.Success)
-            {
-                return RedirectToAction("GameDetails", "Game", new {id = viewModel.GameId});
-            }
+            if (result.Success) return RedirectToAction("GameDetails", "Game", new {id = viewModel.GameId});           
 
             ModelState.AddModelError(string.Empty, viewModel.Error);
             return View(viewModel);
@@ -38,12 +35,32 @@ namespace FaqBuilder.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View(_characterBll.GetCharacterVm(id));
+            var viewModel = _characterBll.GetCharacterVm(id);
+
+            if (!viewModel.Success) ModelState.AddModelError(string.Empty, viewModel.Error);
+            
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(CharacterViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            var result = _characterBll.UpdateCharacter(viewModel);
+
+            if (result.Success) return RedirectToAction("GameDetails", "Game", new { id = viewModel.GameId });
+
+            ModelState.AddModelError(string.Empty, viewModel.Error);
+            return View(viewModel);
         }
 
         public ActionResult CharacterDetails(int id)
         {
-            throw new NotImplementedException();
+            return View(_characterBll.GetCharacterVm(id));
         }
     }
 }

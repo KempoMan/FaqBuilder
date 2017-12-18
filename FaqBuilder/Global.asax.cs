@@ -27,6 +27,7 @@ namespace FaqBuilder
                 cfg.CreateMap<GameViewModel, Game>()
                     .ForMember(t => t.Id, opt => opt.Ignore())
                     .ForMember(t => t.Characters, opt => opt.Ignore());
+                cfg.CreateMap<Character, CharacterViewModel>();
             });
         }
     }

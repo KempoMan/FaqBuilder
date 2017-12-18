@@ -200,8 +200,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Bll\CharacterBll.cs" />
+    <Compile Include="Bll\MoveTypeBll.cs" />
     <Compile Include="Bll\FaqBll.cs" />
     <Compile Include="Bll\GameBll.cs" />
+    <Compile Include="Bll\MoveBll.cs" />
     <Compile Include="Bll\PlatformBll.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CharacterController.cs" />
@@ -209,10 +211,13 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MoveController.cs" />
+    <Compile Include="Controllers\MoveTypeController.cs" />
     <Compile Include="Controllers\PlatformController.cs" />
     <Compile Include="Dal\CharacterRepository.cs" />
     <Compile Include="Dal\FaqRepository.cs" />
     <Compile Include="Dal\GameRepository.cs" />
+    <Compile Include="Dal\MoveTypeRepository.cs" />
     <Compile Include="Dal\PlatformRepository.cs" />
     <Compile Include="Dal\Repository.cs" />
     <Compile Include="Dal\UnitOfWork.cs" />
@@ -221,6 +226,7 @@
     <Compile Include="EntityConfigurations\CharacterConfiguration.cs" />
     <Compile Include="EntityConfigurations\FaqConfiguration.cs" />
     <Compile Include="EntityConfigurations\GameConfiguration.cs" />
+    <Compile Include="EntityConfigurations\MoveTypeConfiguration.cs" />
     <Compile Include="EntityConfigurations\PlatformConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -231,6 +237,7 @@
     <Compile Include="Interfaces\IFaqBuilderViewModel.cs" />
     <Compile Include="Interfaces\IFaqRepository.cs" />
     <Compile Include="Interfaces\IGameRepository.cs" />
+    <Compile Include="Interfaces\IMoveTypeRepository.cs" />
     <Compile Include="Interfaces\IPlatformRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
@@ -298,6 +305,18 @@
     <Compile Include="Migrations\201712110521344_AddGamePlatformCharacter.Designer.cs">
       <DependentUpon>201712110521344_AddGamePlatformCharacter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712180532074_AddGamesMoveTypesLookup.cs" />
+    <Compile Include="Migrations\201712180532074_AddGamesMoveTypesLookup.Designer.cs">
+      <DependentUpon>201712180532074_AddGamesMoveTypesLookup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712180607591_MoveTypeConfiguration.cs" />
+    <Compile Include="Migrations\201712180607591_MoveTypeConfiguration.Designer.cs">
+      <DependentUpon>201712180607591_MoveTypeConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712180741034_AdjustColumnNamesForMoveTypesLookup.cs" />
+    <Compile Include="Migrations\201712180741034_AdjustColumnNamesForMoveTypesLookup.Designer.cs">
+      <DependentUpon>201712180741034_AdjustColumnNamesForMoveTypesLookup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Character.cs" />
@@ -315,6 +334,8 @@
     <Compile Include="ViewModels\ControllerInputViewModel.cs" />
     <Compile Include="ViewModels\FaqViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\MoveTypesViewModel.cs" />
+    <Compile Include="ViewModels\MoveTypeViewModel.cs" />
     <Compile Include="ViewModels\PlatformViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -659,9 +680,14 @@
     <Content Include="Views\Game\GameDetails.cshtml" />
     <Content Include="Views\Game\Edit.cshtml" />
     <Content Include="Views\Character\Create.cshtml" />
+    <Content Include="Views\Character\Edit.cshtml" />
+    <Content Include="Views\Character\CharacterDetails.cshtml" />
+    <Content Include="Views\MoveType\MoveTypeIndex.cshtml" />
+    <Content Include="Views\MoveType\CreateMoveType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Move\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -716,6 +742,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712110521344_AddGamePlatformCharacter.resx">
       <DependentUpon>201712110521344_AddGamePlatformCharacter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712180532074_AddGamesMoveTypesLookup.resx">
+      <DependentUpon>201712180532074_AddGamesMoveTypesLookup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712180607591_MoveTypeConfiguration.resx">
+      <DependentUpon>201712180607591_MoveTypeConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712180741034_AdjustColumnNamesForMoveTypesLookup.resx">
+      <DependentUpon>201712180741034_AdjustColumnNamesForMoveTypesLookup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

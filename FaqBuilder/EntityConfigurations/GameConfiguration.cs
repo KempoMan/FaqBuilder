@@ -25,6 +25,16 @@ namespace FaqBuilder.EntityConfigurations
             HasRequired(t => t.Platform)
                 .WithMany(t => t.Games)
                 .WillCascadeOnDelete(false);
+
+            HasMany(t => t.MoveTypes)
+                .WithMany(t => t.Games)                
+                .Map(t =>
+                {
+                    t.MapLeftKey("GameId");
+                    t.MapRightKey("MoveTypeId");
+                    t.ToTable("GamesMoveTypes");                    
+                });
+
         }
     }
 }

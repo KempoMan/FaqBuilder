@@ -24,6 +24,8 @@ namespace FaqBuilder.Bll
         {
             try
             {
+                CheckForDuplicate(viewModel);
+
                 var newCharacter = new Character();
                 Mapper.Map(viewModel, newCharacter);
 
@@ -38,6 +40,14 @@ namespace FaqBuilder.Bll
             return viewModel;
         }
 
+        private void CheckForDuplicate(CharacterViewModel viewModel)
+        {
+            if (_unitOfWork.Characters.Find(t => t.Name == viewModel.Name).FirstOrDefault() != null)
+            {
+                throw new Exception($"A character named \"{viewModel.Name}\" already exists.");
+            }
+        }
+
         public CharacterViewModel GetCharacterVm(int characterId)
         {
             var viewModel = new CharacterViewModel {Id = characterId};
@@ -45,6 +55,24 @@ namespace FaqBuilder.Bll
             {
                 var entity = _unitOfWork.Characters.Get(characterId);
                 Mapper.Map(entity, viewModel);
+            }
+            catch (Exception e)
+            {
+                ErrorHelper.SetError(viewModel, e);
+            }
+
+            return viewModel;
+        }
+
+        public CharacterViewModel UpdateCharacter(CharacterViewModel viewModel)
+        {
+            try
+            {
+                CheckForDuplicate(viewModel);
+
+                var entity = _unitOfWork.Characters.Get(viewModel.Id);
+                Mapper.Map(viewModel, entity);
+                _unitOfWork.Complete();
             }
             catch (Exception e)
             {

@@ -1,4 +1,6 @@
-﻿namespace FaqBuilder.Models
+﻿using System.Collections.Generic;
+
+namespace FaqBuilder.Models
 {
     public class MoveType
     {
@@ -8,8 +10,6 @@
 
         public string Description { get; set; }
 
-        public int GameId { get; set; }
-
-        public Game Game { get; set; }
+        public ICollection<Game> Games { get; set; }
     }
 }

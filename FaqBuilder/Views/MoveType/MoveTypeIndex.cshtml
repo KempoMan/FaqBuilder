@@ -1,0 +1,27 @@
+﻿@model FaqBuilder.ViewModels.MoveTypesViewModel
+
+@{
+    ViewBag.Title = "MoveTypeIndex";
+}
+
+<h2>MoveTypeIndex</h2>
+
+<div>
+    <h4>Game</h4>
+    <hr />
+    <h3>Game: @Model.Game.Name (@Model.Game.Id)</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <input class="btn btn-default" type="button" value="Add Move Type" onclick="location.href='@Url.Action("CreateMoveType", "MoveType", new { gameId = Model.Game.Id })'" />
+        </div>
+    </div>
+    <ul>
+        @foreach (var moveType in Model.MoveTypes)
+        {
+            <li>@moveType.Name</li>
+        }
+    </ul>
+</div>
+<p>    
+    @Html.ActionLink("Back to Game", "GameDetails", "Game", new { id = Model.GameId }, null)
+</p>

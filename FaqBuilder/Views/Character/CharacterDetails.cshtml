@@ -1,0 +1,70 @@
+﻿@model FaqBuilder.ViewModels.CharacterViewModel
+
+@{
+    ViewBag.Title = "CharacterDetails";
+}
+
+@section styles{
+    <link rel="stylesheet" type="text/css" href="~/Content/DataTables/css/jquery.dataTables.css">
+}
+
+<h2>CharacterDetails</h2>
+
+<div>
+    <h4>Character</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <input class="btn btn-default" type="button" value="Add Move" onclick="location.href='@Url.Action("Create", "Move", new { id = Model.Id })'" />
+    </div>
+</div>
+<div class="row">
+    &nbsp;
+</div>
+<div class="row">
+
+    <table class="table table-striped" id="movesTable">
+        <thead>
+            <tr>
+                <th>Move Name</th>
+                <th>Move Motion</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to Game", "GameDetails", "Game", new { id = Model.GameId }, null)
+</p>
+
+@section scripts{
+    <script type="text/javascript" charset="utf8" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#movesTable').DataTable();
+        });
+    </script>
+}
