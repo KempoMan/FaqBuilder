@@ -10,6 +10,7 @@ namespace FaqBuilder.DbContext
         public DbSet<Game> Games { get; set; }
         public DbSet<Character> Characters { get; set; }
         public DbSet<MoveType> MoveTypes { get; set; }
+        public DbSet<Move> Moves { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -17,6 +18,7 @@ namespace FaqBuilder.DbContext
             modelBuilder.Configurations.Add(new GameConfiguration());
             modelBuilder.Configurations.Add(new CharacterConfiguration());
             modelBuilder.Configurations.Add(new MoveTypeConfiguration());
+            modelBuilder.Configurations.Add(new MoveConfiguration());
         }
     }
 }

@@ -11,9 +11,16 @@ namespace FaqBuilder.Controllers
     {
         private readonly MoveBll _moveBll = new MoveBll();
 
-        public ActionResult Create(int id)
+        public ActionResult CreateMove(int id)
         {
-            return HttpNotFound();
+            var result = _moveBll.CreateNewMoveForCharacter(id);
+
+            if (!result.Success)
+            {
+                ModelState.AddModelError(string.Empty, result.Error);
+            }
+
+            return View(result);
         }
     }
 }

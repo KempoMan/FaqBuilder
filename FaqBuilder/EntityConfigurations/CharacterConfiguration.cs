@@ -22,6 +22,10 @@ namespace FaqBuilder.EntityConfigurations
             HasRequired(t => t.Game)
                 .WithMany(t => t.Characters)
                 .WillCascadeOnDelete(false);
+
+            HasOptional(t => t.Moves)
+                .WithRequired()
+                .WillCascadeOnDelete(false);
         }
     }
 }
