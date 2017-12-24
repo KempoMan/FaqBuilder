@@ -1,6 +1,7 @@
 ﻿using System;
 using FaqBuilder.Dal;
 using FaqBuilder.DbContext;
+using FaqBuilder.Models;
 using FaqBuilder.ViewModels;
 
 namespace FaqBuilder.Bll
@@ -10,7 +11,7 @@ namespace FaqBuilder.Bll
         private readonly UnitOfWork _unitOfWork = new UnitOfWork(new FaqBuilderDbContext());
 
 
-        public MoveViewModel CreateNewMoveForCharacter(int characterId)
+        public MoveViewModel GetCreateNewMoveVmForCharacter(int characterId)
         {
             var viewModel = new MoveViewModel {CharacterId = characterId};
 
@@ -26,6 +27,38 @@ namespace FaqBuilder.Bll
                 var moveTypes = character.Game.MoveTypes;
 
                 viewModel.MoveTypes = moveTypes;
+            }
+            catch (Exception e)
+            {
+                viewModel.Success = false;
+                viewModel.Error = e.Message;
+            }
+
+            return viewModel;
+        }
+
+        public MoveViewModel CreateMoveForCharacter(MoveViewModel viewModel)
+        {
+            try
+            {
+                var character = _unitOfWork.Characters.Get(viewModel.CharacterId);
+                var movetype = _unitOfWork.MoveTypes.Get(viewModel.MoveTypeId);
+
+                var newMove = new Move
+                {
+                    CharacterId = viewModel.CharacterId,
+                    Character = character,
+                    MoveTypeId = viewModel.MoveTypeId,
+                    MoveType = movetype,
+                    Name = viewModel.Name,
+                    Motion = viewModel.Motion
+                };
+
+                //_unitOfWork.Moves.Add(newMove);
+
+                //character.Moves.Add(newMove);
+
+                _unitOfWork.Complete();
             }
             catch (Exception e)
             {

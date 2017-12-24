@@ -23,7 +23,10 @@ namespace FaqBuilder.Bll
 
         public MoveTypeViewModel GetNewMoveTypeVm(int gameId)
         {
-            return new MoveTypeViewModel {GameId = gameId };
+            return new MoveTypeViewModel
+            {
+                GameId = gameId
+            };
         }
 
         public MoveTypeViewModel CreateMoveType(MoveTypeViewModel viewModel)

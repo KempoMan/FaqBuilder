@@ -15,6 +15,7 @@ namespace FaqBuilder.Dal
             Faqs = new FaqRepository(_context);
             Characters = new CharacterRepository(_context);
             MoveTypes = new MoveTypeRepository(_context);
+            //Moves = new MoveRepository(_context);
         }
 
         public IPlatformRepository Platforms { get; set; }
@@ -22,6 +23,8 @@ namespace FaqBuilder.Dal
         public IFaqRepository Faqs { get; set; }
         public ICharacterRepository Characters { get; set; }
         public IMoveTypeRepository MoveTypes { get; set; }
+        //public IMoveRepository Moves { get; set; }
+
 
         public void Dispose()
         {

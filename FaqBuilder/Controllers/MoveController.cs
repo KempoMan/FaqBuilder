@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FaqBuilder.Bll;
+using FaqBuilder.ViewModels;
 
 namespace FaqBuilder.Controllers
 {
@@ -13,7 +14,25 @@ namespace FaqBuilder.Controllers
 
         public ActionResult CreateMove(int id)
         {
-            var result = _moveBll.CreateNewMoveForCharacter(id);
+            var result = _moveBll.GetCreateNewMoveVmForCharacter(id);
+
+            if (!result.Success)
+            {
+                ModelState.AddModelError(string.Empty, result.Error);
+            }
+
+            return View(result);
+        }
+
+        [HttpPost]
+        public ActionResult CreateMove(MoveViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            var result = _moveBll.CreateMoveForCharacter(viewModel);
 
             if (!result.Success)
             {

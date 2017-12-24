@@ -8,9 +8,11 @@
 
         public int MoveTypeId { get; set; }
 
+        public MoveType MoveType { get; set; }
+
         public int CharacterId { get; set; }
 
-        public Character Character { get; set; }
+        public virtual Character Character { get; set; }
 
         public string Motion { get; set; }
     }

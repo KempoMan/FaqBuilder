@@ -11,5 +11,7 @@ namespace FaqBuilder.Models
         public string Description { get; set; }
 
         public ICollection<Game> Games { get; set; }
+
+        public ICollection<Move> Moves { get; set; }
     }
 }
