@@ -28,6 +28,7 @@ namespace FaqBuilder
                     .ForMember(t => t.Id, opt => opt.Ignore())
                     .ForMember(t => t.Characters, opt => opt.Ignore());
                 cfg.CreateMap<Character, CharacterViewModel>();
+                cfg.CreateMap<CharacterViewModel, Character>().ForMember(t => t.Moves, opt => opt.Ignore());
             });
         }
     }

@@ -1,17 +1,16 @@
 ﻿@model FaqBuilder.ViewModels.CharacterViewModel
 
 @{
-    ViewBag.Title = "CharacterDetails";
+    ViewBag.Title = Model.Name;
 }
 
 @section styles{
     <link rel="stylesheet" type="text/css" href="~/Content/DataTables/css/jquery.dataTables.css">
 }
 
-<h2>CharacterDetails</h2>
+<h2>@Model.Name</h2>
 
 <div>
-    <h4>Character</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -40,31 +39,42 @@
 <div class="row">
     &nbsp;
 </div>
-<div class="row">
 
-    <table class="table table-striped" id="movesTable">
-        <thead>
-            <tr>
-                <th>Move Name</th>
-                <th>Move Motion</th>
-            </tr>
-        </thead>
-        <tbody>
+@{
+    var moveTypes = Model.Moves.Select(t => t.MoveType).Distinct();
 
-        </tbody>
-    </table>
+    foreach (var moveType in moveTypes)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <h3>@moveType.Name</h3>
+                <table class="table table-striped" id="movesTable">
+                    <thead>
+                    <tr>
+                        <th>Move Name</th>
+                        <th>Move Motion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var move in Model.Moves.Where(t => t.MoveType == moveType))
+                    {
+                        <tr>
+                            <td>
+                                @move.Name
+                            </td>
+                            <td>
+                                @move.Motion
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}
 
-</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to Game", "GameDetails", "Game", new { id = Model.GameId }, null)
 </p>
-
-@section scripts{
-    <script type="text/javascript" charset="utf8" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#movesTable').DataTable();
-        });
-    </script>
-}

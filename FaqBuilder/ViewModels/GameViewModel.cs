@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using FaqBuilder.Helpers;
 using FaqBuilder.Models;
@@ -30,6 +31,10 @@ namespace FaqBuilder.ViewModels
 
         public IEnumerable<Platform> Platforms { get; set; } = new List<Platform>();
 
-        public ICollection<Character> Characters { get; set; }
+        public ICollection<Character> Characters { get; set; } = new List<Character>();
+
+        public ICollection<MoveType> MoveTypes { get; set; } = new List<MoveType>();
+
+        public ICollection<InputMap> InputMaps { get; set; } = new List<InputMap>();
     }
 }

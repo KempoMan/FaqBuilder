@@ -23,11 +23,9 @@ namespace FaqBuilder.EntityConfigurations
                 .WithMany(t => t.Characters)
                 .WillCascadeOnDelete(false);
 
-            //HasMany(t => t.Moves)
-            //    .WithRequired(t => t.Character)
-            //    .WillCascadeOnDelete(false);
-
-
+            HasMany(t => t.Moves)
+                .WithRequired(t => t.Character)
+                .WillCascadeOnDelete(false);
         }
     }
 }

@@ -39,14 +39,14 @@ namespace FaqBuilder.Controllers
             return View(result);
         }
 
-        public ActionResult GameDetails(int? id)
+        public ActionResult GameDetails(int? gameId)
         {
-            if (id == null)
+            if (gameId == null)
             {
                 return HttpNotFound();
             }
 
-            var result = _gameBll.GetGameVmById(id.Value);
+            var result = _gameBll.GetGameVmById(gameId.Value);
 
             if (result.Success)
             {

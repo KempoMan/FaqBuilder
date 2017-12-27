@@ -20,6 +20,6 @@ namespace FaqBuilder.Models
 
         public virtual ICollection<Character> Characters { get; set; } = new List<Character>();
 
-
+        public virtual ICollection<InputMap> InputMaps { get; set; } = new List<InputMap>();
     }
 }

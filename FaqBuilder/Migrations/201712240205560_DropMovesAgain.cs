@@ -7,18 +7,31 @@ namespace FaqBuilder.Migrations
     {
         public override void Up()
         {
+            DropForeignKey("dbo.Moves", "MoveTypeId", "dbo.MoveTypes");
             DropForeignKey("dbo.Moves", "CharacterId", "dbo.Characters");
-            AlterColumn("dbo.Moves", "Name", c => c.String());
-            AlterColumn("dbo.Moves", "Motion", c => c.String());
-            AddForeignKey("dbo.Moves", "CharacterId", "dbo.Characters", "Id", cascadeDelete: true);
+            DropIndex("dbo.Moves", new[] { "MoveTypeId" });
+            DropIndex("dbo.Moves", new[] { "CharacterId" });
+            DropTable("dbo.Moves");
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Moves", "CharacterId", "dbo.Characters");
-            AlterColumn("dbo.Moves", "Motion", c => c.String(maxLength: 250));
-            AlterColumn("dbo.Moves", "Name", c => c.String(maxLength: 100));
+            CreateTable(
+                "dbo.Moves",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(maxLength: 100),
+                        MoveTypeId = c.Int(nullable: false),
+                        CharacterId = c.Int(nullable: false),
+                        Motion = c.String(maxLength: 250),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateIndex("dbo.Moves", "CharacterId");
+            CreateIndex("dbo.Moves", "MoveTypeId");
             AddForeignKey("dbo.Moves", "CharacterId", "dbo.Characters", "Id");
+            AddForeignKey("dbo.Moves", "MoveTypeId", "dbo.MoveTypes", "Id", cascadeDelete: true);
         }
     }
 }

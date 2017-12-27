@@ -17,7 +17,8 @@ namespace FaqBuilder.Bll
 
         public CharacterViewModel GetNewCharacterVm(int gameId)
         {
-            return new CharacterViewModel {GameId = gameId};
+            var newVm = new CharacterViewModel {GameId = gameId};
+            return newVm;
         }
 
         public CharacterViewModel CreateCharacter(CharacterViewModel viewModel)
@@ -42,7 +43,9 @@ namespace FaqBuilder.Bll
 
         private void CheckForDuplicate(CharacterViewModel viewModel)
         {
-            if (_unitOfWork.Characters.Find(t => t.Name == viewModel.Name).FirstOrDefault() != null)
+            var existingCharacter = _unitOfWork.Characters.Find(t => t.Name == viewModel.Name).FirstOrDefault();
+
+            if (existingCharacter != null && existingCharacter.Id != viewModel.Id)
             {
                 throw new Exception($"A character named \"{viewModel.Name}\" already exists.");
             }
@@ -61,6 +64,11 @@ namespace FaqBuilder.Bll
                 ErrorHelper.SetError(viewModel, e);
             }
 
+            foreach (var move in viewModel.Moves)
+            {
+                move.Motion = RemoveWhitespace(move.Motion);
+            }
+
             return viewModel;
         }
 
@@ -72,6 +80,7 @@ namespace FaqBuilder.Bll
 
                 var entity = _unitOfWork.Characters.Get(viewModel.Id);
                 Mapper.Map(viewModel, entity);
+
                 _unitOfWork.Complete();
             }
             catch (Exception e)
@@ -80,6 +89,13 @@ namespace FaqBuilder.Bll
             }
 
             return viewModel;
+        }
+
+        public static string RemoveWhitespace(string input)
+        {
+            return new string(input.ToCharArray()
+                .Where(c => !char.IsWhiteSpace(c))
+                .ToArray());
         }
     }
 }

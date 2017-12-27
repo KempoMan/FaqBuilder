@@ -12,9 +12,9 @@ namespace FaqBuilder.Controllers
     {
         private readonly CharacterBll _characterBll = new CharacterBll();
 
-        public ActionResult Create(int id)
+        public ActionResult Create(int gameId)
         {            
-            return View(_characterBll.GetNewCharacterVm(id));
+            return View(_characterBll.GetNewCharacterVm(gameId));
         }
 
         [HttpPost]
@@ -27,7 +27,7 @@ namespace FaqBuilder.Controllers
 
             var result = _characterBll.CreateCharacter(viewModel);
 
-            if (result.Success) return RedirectToAction("GameDetails", "Game", new {id = viewModel.GameId});           
+            if (result.Success) return RedirectToAction("GameDetails", "Game", new { gameId = viewModel.GameId});           
 
             ModelState.AddModelError(string.Empty, viewModel.Error);
             return View(viewModel);
@@ -52,7 +52,7 @@ namespace FaqBuilder.Controllers
 
             var result = _characterBll.UpdateCharacter(viewModel);
 
-            if (result.Success) return RedirectToAction("GameDetails", "Game", new { id = viewModel.GameId });
+            if (result.Success) return RedirectToAction("GameDetails", "Game", new { gameId = viewModel.GameId });
 
             ModelState.AddModelError(string.Empty, viewModel.Error);
             return View(viewModel);

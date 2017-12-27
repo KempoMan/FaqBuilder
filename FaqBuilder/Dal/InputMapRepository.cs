@@ -4,10 +4,11 @@ using FaqBuilder.Models;
 
 namespace FaqBuilder.Dal
 {
-    public class GameRepository : Repository<Game>, IGameRepository
+    public class InputMapRepository : Repository<InputMap>, IInputMapRepository
     {
-        public GameRepository(System.Data.Entity.DbContext context) : base(context)
+        public InputMapRepository(System.Data.Entity.DbContext context) : base(context)
         {
+
         }
 
         public FaqBuilderDbContext FaqBuilderDbContext => Context as FaqBuilderDbContext;

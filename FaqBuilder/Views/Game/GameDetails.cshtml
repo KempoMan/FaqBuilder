@@ -34,23 +34,91 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <input class="btn btn-default" type="button" value="Add Character" onclick="location.href='@Url.Action("Create", "Character", new { id = Model.Id })'" />
+        <input class="btn btn-default" type="button" value="Add Input Mapping" onclick="location.href='@Url.Action("CreateInputMap", "InputMap", new { id = Model.Id })'" />
+    </div>
+</div>
+<div class="row">
+    <h2>Input Mapping</h2>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped" id="inputMappingTable">
+            <thead>
+            <tr>
+                <th>Input</th>
+                <th>Converted Input</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var inputMap in Model.InputMaps)
+            {
+                <tr>
+                    <td>@inputMap.Input</td>
+                    <td>@inputMap.ConvertedInput</td>
+                    <td>
+                        @*<input class="btn btn-default btn-sm" type="button" value="Details" onclick="location.href='@Url.Action("CharacterDetails", "Character", new { id = character.Id })'" />
+                            <input class="btn btn-default btn-sm" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Character", new { id = character.Id })'" />*@
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
         <input class="btn btn-default" type="button" value="Manage Move Types" onclick="location.href='@Url.Action("MoveTypeIndex", "MoveType", new { id = Model.Id })'" />
     </div>
 </div>
 <div class="row">
-    &nbsp;
+    <h2>Move Types</h2>
 </div>
-<div>
-    <table class="table table-striped" id="charactersTable">
-        <thead>
-        <tr>
-            <th>Character Name</th>
-            <th>Character Description</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped" id="moveTypesTable">
+            <thead>
+                <tr>
+                    <th>Character Name</th>
+                    <th>Character Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var moveType in Model.MoveTypes.OrderBy(t => t.Name))
+                {
+                    <tr>
+                        <td>@moveType.Name</td>
+                        <td>@moveType.Description</td>
+                        <td>
+                            @*<input class="btn btn-default btn-sm" type="button" value="Details" onclick="location.href='@Url.Action("CharacterDetails", "Character", new { id = character.Id })'" />
+                            <input class="btn btn-default btn-sm" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Character", new { id = character.Id })'" />*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <input class="btn btn-default" type="button" value="Add Character" onclick="location.href='@Url.Action("Create", "Character", new { gameId = Model.Id })'" />
+    </div>
+</div>
+<div class="row">
+    <h2>Characters</h2>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped" id="charactersTable">
+            <thead>
+            <tr>
+                <th>Character Name</th>
+                <th>Character Description</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
             @foreach (var character in Model.Characters.OrderBy(t => t.Name))
             {
                 <tr>
@@ -62,8 +130,9 @@
                     </td>
                 </tr>
             }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
@@ -75,6 +144,14 @@
     <script>
         $(document).ready( function () {
             $('#charactersTable').DataTable();
+        });
+
+        $(document).ready(function () {
+            $('#moveTypesTable').DataTable();
+        });
+
+        $(document).ready(function () {
+            $('#inputMappingTable').DataTable();
         } );
     </script>
 }

@@ -10,10 +10,12 @@ namespace FaqBuilder.Models
 
         public string Description { get; set; }
 
-        //public virtual ICollection<Move> Moves { get; set; } = new List<Move>();
+        public virtual ICollection<Move> Moves { get; set; } = new List<Move>();
 
         public int GameId { get; set; }
 
         public virtual Game Game { get; set; }
+
+        public int SortOrder { get; set; }
     }
 }

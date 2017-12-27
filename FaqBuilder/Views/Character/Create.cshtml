@@ -30,6 +30,7 @@
             </div>
         </div>
 
+        @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.GameId)
 
         <div class="form-group">
@@ -41,5 +42,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Game", "GameDetails", "Game", new { id = Model.GameId}, null)
+    @Html.ActionLink("Back to Game", "GameDetails", "Game", new { gameId = Model.GameId}, null)
 </div>

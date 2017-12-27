@@ -13,5 +13,7 @@ namespace FaqBuilder.Models
         public ICollection<Game> Games { get; set; }
 
         public ICollection<Move> Moves { get; set; }
+
+        public int SortOrder { get; set; }
     }
 }

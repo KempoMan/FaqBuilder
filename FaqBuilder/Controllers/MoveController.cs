@@ -34,12 +34,11 @@ namespace FaqBuilder.Controllers
 
             var result = _moveBll.CreateMoveForCharacter(viewModel);
 
-            if (!result.Success)
-            {
-                ModelState.AddModelError(string.Empty, result.Error);
-            }
+            if (result.Success)
+                return RedirectToAction("CharacterDetails", "Character", new {id = viewModel.CharacterId});
 
-            return View(result);
+            ModelState.AddModelError(string.Empty, result.Error);
+            return View(_moveBll.GetViewModelLists(viewModel));
         }
     }
 }

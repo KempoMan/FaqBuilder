@@ -16,8 +16,6 @@ namespace FaqBuilder.EntityConfigurations
                 .HasMaxLength(250);
 
             HasRequired(t => t.MoveType);
-
-            //HasRequired(t => t.Character);
         }
     }
 }

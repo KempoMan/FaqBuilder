@@ -8,12 +8,14 @@
 
         public int MoveTypeId { get; set; }
 
-        public MoveType MoveType { get; set; }
+        public virtual MoveType MoveType { get; set; }
 
         public int CharacterId { get; set; }
 
         public virtual Character Character { get; set; }
 
         public string Motion { get; set; }
+
+        public int SortOrder { get; set; }
     }
 }

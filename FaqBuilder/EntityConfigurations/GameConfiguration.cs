@@ -35,6 +35,9 @@ namespace FaqBuilder.EntityConfigurations
                     t.ToTable("GamesMoveTypes");                    
                 });
 
+            //HasOptional(t => t.InputMaps)
+            //    .WithRequired()
+            //    .WillCascadeOnDelete(false);
         }
     }
 }

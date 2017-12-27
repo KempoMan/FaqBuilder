@@ -200,6 +200,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Bll\CharacterBll.cs" />
+    <Compile Include="Bll\InputMapBll.cs" />
     <Compile Include="Bll\MoveTypeBll.cs" />
     <Compile Include="Bll\FaqBll.cs" />
     <Compile Include="Bll\GameBll.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InputMapController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoveController.cs" />
     <Compile Include="Controllers\MoveTypeController.cs" />
@@ -217,6 +219,7 @@
     <Compile Include="Dal\CharacterRepository.cs" />
     <Compile Include="Dal\FaqRepository.cs" />
     <Compile Include="Dal\GameRepository.cs" />
+    <Compile Include="Dal\InputMapRepository.cs" />
     <Compile Include="Dal\MoveRepository.cs" />
     <Compile Include="Dal\MoveTypeRepository.cs" />
     <Compile Include="Dal\PlatformRepository.cs" />
@@ -227,6 +230,7 @@
     <Compile Include="EntityConfigurations\CharacterConfiguration.cs" />
     <Compile Include="EntityConfigurations\FaqConfiguration.cs" />
     <Compile Include="EntityConfigurations\GameConfiguration.cs" />
+    <Compile Include="EntityConfigurations\InputMapConfiguration.cs" />
     <Compile Include="EntityConfigurations\MoveConfiguration.cs" />
     <Compile Include="EntityConfigurations\MoveTypeConfiguration.cs" />
     <Compile Include="EntityConfigurations\PlatformConfiguration.cs" />
@@ -239,6 +243,7 @@
     <Compile Include="Interfaces\IFaqBuilderViewModel.cs" />
     <Compile Include="Interfaces\IFaqRepository.cs" />
     <Compile Include="Interfaces\IGameRepository.cs" />
+    <Compile Include="Interfaces\IInputMapRepository.cs" />
     <Compile Include="Interfaces\IMoveRepository.cs" />
     <Compile Include="Interfaces\IMoveTypeRepository.cs" />
     <Compile Include="Interfaces\IPlatformRepository.cs" />
@@ -344,6 +349,26 @@
     <Compile Include="Migrations\201712240205560_DropMovesAgain.Designer.cs">
       <DependentUpon>201712240205560_DropMovesAgain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712242201026_NoFluentMapMovesToCharacter.cs" />
+    <Compile Include="Migrations\201712242201026_NoFluentMapMovesToCharacter.Designer.cs">
+      <DependentUpon>201712242201026_NoFluentMapMovesToCharacter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712270004236_AddInputMapTable.cs" />
+    <Compile Include="Migrations\201712270004236_AddInputMapTable.Designer.cs">
+      <DependentUpon>201712270004236_AddInputMapTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712270338303_AddSortOrderFieldToCharacterMoveMoveType.cs" />
+    <Compile Include="Migrations\201712270338303_AddSortOrderFieldToCharacterMoveMoveType.Designer.cs">
+      <DependentUpon>201712270338303_AddSortOrderFieldToCharacterMoveMoveType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712270410075_AdjustInputMapConfiguration.cs" />
+    <Compile Include="Migrations\201712270410075_AdjustInputMapConfiguration.Designer.cs">
+      <DependentUpon>201712270410075_AdjustInputMapConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712270413068_ReAddInputMapsWithFluentConfig.cs" />
+    <Compile Include="Migrations\201712270413068_ReAddInputMapsWithFluentConfig.Designer.cs">
+      <DependentUpon>201712270413068_ReAddInputMapsWithFluentConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Character.cs" />
@@ -351,6 +376,7 @@
     <Compile Include="Models\Faq.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InputMap.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Move.cs" />
     <Compile Include="Models\MoveType.cs" />
@@ -361,6 +387,7 @@
     <Compile Include="ViewModels\ControllerInputViewModel.cs" />
     <Compile Include="ViewModels\FaqViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\InputMapViewModel.cs" />
     <Compile Include="ViewModels\MoveTypesViewModel.cs" />
     <Compile Include="ViewModels\MoveTypeViewModel.cs" />
     <Compile Include="ViewModels\MoveViewModel.cs" />
@@ -713,6 +740,7 @@
     <Content Include="Views\MoveType\MoveTypeIndex.cshtml" />
     <Content Include="Views\MoveType\CreateMoveType.cshtml" />
     <Content Include="Views\Move\CreateMove.cshtml" />
+    <Content Include="Views\InputMap\CreateInputMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -797,6 +825,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712240205560_DropMovesAgain.resx">
       <DependentUpon>201712240205560_DropMovesAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712242201026_NoFluentMapMovesToCharacter.resx">
+      <DependentUpon>201712242201026_NoFluentMapMovesToCharacter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270004236_AddInputMapTable.resx">
+      <DependentUpon>201712270004236_AddInputMapTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270338303_AddSortOrderFieldToCharacterMoveMoveType.resx">
+      <DependentUpon>201712270338303_AddSortOrderFieldToCharacterMoveMoveType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270410075_AdjustInputMapConfiguration.resx">
+      <DependentUpon>201712270410075_AdjustInputMapConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270413068_ReAddInputMapsWithFluentConfig.resx">
+      <DependentUpon>201712270413068_ReAddInputMapsWithFluentConfig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
