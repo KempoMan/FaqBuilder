@@ -31,11 +31,11 @@
 
     </dl>
 </div>
-<div class="row">
+@*<div class="row">
     <div class="col-md-12">
         <input class="btn btn-default" type="button" value="Add Move" onclick="location.href='@Url.Action("CreateMove", "Move", new { id = Model.Id })'" />
     </div>
-</div>
+</div>*@
 <div class="row">
     &nbsp;
 </div>
@@ -46,6 +46,12 @@
     foreach (var moveType in moveTypes)
     {
         <div class="row">
+            <div class="col-md-12">
+                <input class="btn btn-default btn-sm" type="button" value="Add @moveType.Name" 
+                       onclick="location.href='@Url.Action("CreateMoveOfType", "Move", new { id = Model.Id, typeId = moveType.Id })'" />
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-6">
                 <h3>@moveType.Name</h3>
                 <table class="table table-striped" id="movesTable">
@@ -53,6 +59,7 @@
                     <tr>
                         <th>Move Name</th>
                         <th>Move Motion</th>
+                        <td></td>
                     </tr>
                     </thead>
                     <tbody>
@@ -64,6 +71,9 @@
                             </td>
                             <td>
                                 @move.Motion
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete Move", "DeleteMove", "Move", new { characterId = Model.Id, moveId = move.Id }, new { @class="btn btn-danger btn-sm" })
                             </td>
                         </tr>
                     }

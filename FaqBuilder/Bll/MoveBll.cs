@@ -29,6 +29,23 @@ namespace FaqBuilder.Bll
             return viewModel;
         }
 
+        public MoveViewModel GetCreateNewMoveVmForCharacterByType(int characterId, int typeId)
+        {
+            var viewModel = new MoveViewModel { CharacterId = characterId, MoveTypeId = typeId };
+
+            try
+            {
+                GetViewModelLists(viewModel);
+            }
+            catch (Exception e)
+            {
+                viewModel.Success = false;
+                viewModel.Error = e.Message;
+            }
+
+            return viewModel;
+        }
+
         public MoveViewModel GetViewModelLists(MoveViewModel viewModel)
         {
             var character = _unitOfWork.Characters.Get(viewModel.CharacterId);
@@ -79,6 +96,23 @@ namespace FaqBuilder.Bll
             }
 
             return viewModel;
+        }
+
+        public bool DeleteMove(int moveId)
+        {
+            try
+            {
+                var move = _unitOfWork.Moves.Get(moveId);
+                _unitOfWork.Moves.Remove(move);
+                _unitOfWork.Complete();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
     }
 }

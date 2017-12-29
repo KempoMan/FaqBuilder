@@ -369,6 +369,10 @@
     <Compile Include="Migrations\201712270413068_ReAddInputMapsWithFluentConfig.Designer.cs">
       <DependentUpon>201712270413068_ReAddInputMapsWithFluentConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712290623005_AddMoveObjectToMoveTypesEntity.cs" />
+    <Compile Include="Migrations\201712290623005_AddMoveObjectToMoveTypesEntity.Designer.cs">
+      <DependentUpon>201712290623005_AddMoveObjectToMoveTypesEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Character.cs" />
@@ -840,6 +844,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712270413068_ReAddInputMapsWithFluentConfig.resx">
       <DependentUpon>201712270413068_ReAddInputMapsWithFluentConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712290623005_AddMoveObjectToMoveTypesEntity.resx">
+      <DependentUpon>201712290623005_AddMoveObjectToMoveTypesEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
